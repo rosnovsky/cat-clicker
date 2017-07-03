@@ -1,0 +1,41 @@
+body {
+    font-family: "Helvetica", "PT Sans", sans-serif; 
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.cat {
+    width: 600px;
+    height: 600px;
+    align-self: left;
+}
+
+.counter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 600px;
+    width: 600px;
+    text-justify: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.number {
+    font-size: 4rem;
+}
