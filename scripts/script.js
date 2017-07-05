@@ -2,7 +2,8 @@
 
 let cats = [{   id: 1, name: "Dice", picture: "dice.jpg", counter: 1  },
             {   id: 2, name: "Trish", picture: "trish.jpg", counter: 1  },
-            {   id: 3, name: "Bubbles", picture: "bubbles.jpg", counter: 1  }];
+            {   id: 3, name: "Bubbles", picture: "bubbles.jpg", counter: 1  },
+            {   id: 4, name: "Charlie", picture: "kittens.jpg", counter: 1  }];
 
 let listCats = function () {
     for(let i = 0; i<cats.length; i++){
@@ -15,11 +16,11 @@ let listCats = function () {
         catDiv.appendChild(name);
 
         let catImage = document.createElement('img');
-        catImage.setAttribute('src', `${cats[i].picture}`);
+        catImage.setAttribute('src', `images/${cats[i].picture}`);
         catImage.setAttribute('alt', `A picture of ${cats[i].name}`);
         catImage.setAttribute('class', 'cat');
         catDiv.appendChild(catImage);
-        let html = document.querySelector(".cats");
+        let html = document.querySelector(".catsPics");
         html.appendChild(catDiv);
     }
 };
