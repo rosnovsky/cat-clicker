@@ -5,9 +5,9 @@ let cats = [{   id: 1, name: "Dice", picture: "dice.jpg", counter: 1  },
             {   id: 3, name: "Bubbles", picture: "bubbles.jpg", counter: 1  },
             {   id: 4, name: "Charlie", picture: "kittens.jpg", counter: 1  }];
 
-let listCats = function () {
+let listCatNames = function () {
     for(let i = 0; i<cats.length; i++){
-        let catDiv = document.createElement('div');
+        let catNameDiv = document.createElement('div');
         catDiv.className = `singleCat`;
         catDiv.id = cats[i].id;
         
