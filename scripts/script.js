@@ -11,7 +11,11 @@ let listCatNames = function () {
         catDiv.className = `singleCat`;
         catDiv.id = cats[i].id;
         
-        let name = document.createElement('h3');
+    }
+};
+
+let showCatPicture = function (catId) {
+    let name = document.createElement('h3');
         name.innerHTML = `${cats[i].name}: <span class="counter">0</span> <span class="times">times</span>`;
         catDiv.appendChild(name);
 
@@ -22,8 +26,7 @@ let listCatNames = function () {
         catDiv.appendChild(catImage);
         let html = document.querySelector(".catsPics");
         html.appendChild(catDiv);
-    }
-};
+}
 
 listCats();
 
