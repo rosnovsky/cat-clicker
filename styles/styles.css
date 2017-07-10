@@ -18,14 +18,33 @@ body {
     justify-content: center;
 }
 
-.catsNames {
+.catsNames  {
     width: 400px;
     align-self: left;
+    margin-bottom: 2em;
+}
+
+.catName {
+    display: flex;
+    height: 5em;
+    padding-left: 1em;
+    align-content: center;
+    align-items: center;
+}
+
+.catName:hover {
+    cursor: pointer;
+    transition: .2s linear;;
+    background-color: #f0f0f0;
 }
 
 .catsPics {
     width: 400px;
     align-self: left;
+}
+
+.cat {
+    height:300px;
 }
 
 .number {

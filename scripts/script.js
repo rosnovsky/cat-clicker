@@ -1,65 +1,88 @@
 /* jshint esversion: 6 */
 
-let cats = [{   id: 1, name: "Dice", picture: "dice.jpg", counter: 1  },
-            {   id: 2, name: "Trish", picture: "trish.jpg", counter: 1  },
-            {   id: 3, name: "Bubbles", picture: "bubbles.jpg", counter: 1  },
-            {   id: 4, name: "Charlie", picture: "kittens.jpg", counter: 1  }];
+let cats = [
+    {   id: 1, name: "Dice", picture: "dice.jpg", counter: 0  },
+    {   id: 2, name: "Trish", picture: "trish.jpg", counter: 0  },
+    {   id: 3, name: "Bubbles", picture: "bubbles.jpg", counter: 0  },
+    {   id: 4, name: "Charlie", picture: "kittens.jpg", counter: 0  }
+    ];
+
+
+// Listing cats' names on the left side of the screen.
 
 let listCatNames = function () {
     for(let i = 0; i<cats.length; i++){
         let catNameDiv = document.createElement('div');
-        catDiv.className = `singleCat`;
-        catDiv.id = cats[i].id;
+        catNameDiv.className = `catName`;
+        catNameDiv.id = cats[i].id;
         
+        let name = document.createElement('h3');
+        name.innerHTML = cats[i].name;
+        catNameDiv.appendChild(name);
+
+        let html = document.querySelector(".catsNames");
+        html.appendChild(catNameDiv);   
     }
 };
 
-let showCatPicture = function (catId) {
-    let name = document.createElement('h3');
-        name.innerHTML = `${cats[i].name}: <span class="counter">0</span> <span class="times">times</span>`;
-        catDiv.appendChild(name);
+// Building cat list
+listCatNames();
 
-        let catImage = document.createElement('img');
-        catImage.setAttribute('src', `images/${cats[i].picture}`);
-        catImage.setAttribute('alt', `A picture of ${cats[i].name}`);
-        catImage.setAttribute('class', 'cat');
-        catDiv.appendChild(catImage);
-        let html = document.querySelector(".catsPics");
-        html.appendChild(catDiv);
-}
-
-listCats();
-
- function lookupCat(key){
-            for (var i=0; i < cats.length; i++) {
-                if (cats[i].id === key) {
-                    
-                    return cats[i];
-                }
-            }
-        }
-
-let listOfCats = document.querySelectorAll('.singleCat');
+// Making each cat's name clickable
+let listOfCats = document.querySelectorAll('.catName');
 listOfCats.forEach(cat => {
-    cat.addEventListener('click', updateClicksNumber, true);
+    cat.addEventListener('click', displayCat);
 });
 
-function updateClicksNumber(){
-        let counterNumber = this.querySelector(`.counter`);
-        let counterTimes = this.querySelector('.times');
-        let id = parseInt(this.id);
+    // Displaying cat's picture on the right when this cat's name is clicked
+    function displayCat() {
+    let catsPics = document.querySelector(".catsPics");
+    catsPics.innerHTML = "";
+    let name = document.createElement('h3');
+    
 
-        if (counterNumber.innerHTML == 0) {
+    let currentCat = lookupCat(this.id);
+
+    name.innerHTML = `${currentCat.name}: <span class="counter">${currentCat.counter}</span> <span class="times">times</span>`;
+    catsPics.appendChild(name);
+
+    let catImage = document.createElement('img');
+    catImage.setAttribute('src', `images/${currentCat.picture}`);
+    catImage.setAttribute('alt', `A picture of ${currentCat.name}`);
+    catImage.setAttribute('class', 'cat');
+    catImage.setAttribute('id', currentCat.id);
+    catsPics.appendChild(catImage);
+    let html = document.querySelector(".catsPics");
+
+    html.addEventListener('click', updateClicksNumber, true);
+    }
+
+function lookupCat(catKey){
+        for (var i=0; i < cats.length; i++) {
+            if (cats[i].id == catKey) {
+                return cats[i];
+            }
+        }
+    }
+
+
+function updateClicksNumber(){
+        //looking up current cat
+        let catKey = this.querySelector('img').id;
+        let currentCat = lookupCat(catKey);
+
+        //setting counter to cat's counter
+        let currentCounter = currentCat.counter;
+        currentCounter++;
+
+        let counterNumber = this.querySelector('.counter');
+        let counterTimes = this.querySelector('.times');
+        if (counterNumber.innerHTML == "0") {
             counterTimes.innerHTML = "time";
         }else{
             counterTimes.innerHTML = "times";
         }
 
-        let currentCat = lookupCat(id);
-        let currentCounter = currentCat.counter;
-
         counterNumber.innerHTML = currentCounter;
-        currentCounter++;
-        currentCat.counter = currentCounter; 
-
+        currentCat.counter = currentCounter;
     }
